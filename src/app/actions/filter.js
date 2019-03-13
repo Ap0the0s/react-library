@@ -1,4 +1,4 @@
-export function filterBooks() {
+export function filterBooks(page = 1) {
     let filter_select = document.getElementsByClassName('filter-select');
     let filters = [];
     //get filters values
@@ -12,7 +12,8 @@ export function filterBooks() {
     }
     return {
         type: 'FILTERS_CHANGED',
-        filters: filters
+        filters: filters,
+        page: page
     };
 }
 

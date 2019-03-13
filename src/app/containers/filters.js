@@ -11,16 +11,20 @@ class Filters extends Component {
         let genre = [];
         let author = [];
         let year = [];
+        let publisher = [];
         this.props.books.map(book => {
             genre.push((book.genre));
             author.push((book.author));
             year.push((book.year));
+            publisher.push((book.publisher));
         });
-        genre = genre.filter(this.onlyUnique);
-        author = author.filter(this.onlyUnique);
-        year = year.filter(this.onlyUnique);
+        genre = genre.filter(Filters.onlyUnique);
+        author = author.filter(Filters.onlyUnique);
+        year = year.filter(Filters.onlyUnique);
+        publisher = publisher.filter(Filters.onlyUnique);
         filters['genre'] = genre.sort();
         filters['author'] = author.sort();
+        filters['publisher'] = publisher.sort();
         filters['year'] = year.sort();
         return filters;
     }
@@ -52,7 +56,7 @@ class Filters extends Component {
     }
 
     //remove repeated values from array
-    onlyUnique(value, index, self) {
+    static onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 

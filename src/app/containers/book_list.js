@@ -6,24 +6,28 @@ import {bindActionCreators} from 'redux';
 class BookList extends Component {
 
     //show book details popup
-    showDetails() {
+    static showDetails() {
         if (document.getElementsByClassName('book-info-bg').length)
             document.getElementsByClassName('book-info-bg')[0].style.display = 'block';
     }
 
     getBookInfo(book) {
         this.props.selectBook(book);
-        this.showDetails();
+        BookList.showDetails();
     }
 
     //generate book info
     renderList() {
-        return this.props.books.map(book => (
+        let offset = this.props.books.per_page * (this.props.books.active_page - 1);
+        let count = offset + this.props.books.per_page;
+        // let actual_page_list = this.props.books; //to see whole list
+        let actual_page_list = this.props.books.slice(offset, count);
+        return actual_page_list.map(book => (
             <div key={book.id} className='book-item' onClick={() => this.getBookInfo(book)}>
                 <span>{book.author}</span>
                 <span>{book.title}</span>
                 <span>{book.genre}</span>
-                <span>{book.year}</span>
+                <span>{book.publisher}, {book.year}</span>
             </div>));
     }
 
