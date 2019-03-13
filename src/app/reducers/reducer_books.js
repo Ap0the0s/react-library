@@ -197,12 +197,10 @@ export default function (state, action) {
 
         for (let i = 0; i < initial_state.length; i++) {
             let filter_checking = 0;
-            if (filter.length) {
-                for (let filter in action.filters) {
-                    // if (initial_state[i][filter] === action.filters[filter] || action.filters[filter] === "0") { //for non-multiple select
-                    if (action.filters[filter].indexOf(initial_state[i][filter]) >= 0 || action.filters[filter] === "0" || action.filters[filter] === "") {
-                        filter_checking++;
-                    }
+            for (let filter in action.filters) {
+                // if (initial_state[i][filter] === action.filters[filter] || action.filters[filter] === "0") { //for non-multiple select
+                if (action.filters[filter].indexOf(initial_state[i][filter]) >= 0 || action.filters[filter] === "0" || action.filters[filter] === "") {
+                    filter_checking++;
                 }
             }
 
