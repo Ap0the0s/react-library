@@ -83,7 +83,7 @@ module.exports = {
             filename: '[name].js.map',
             exclude: ['bundle.js'],
         }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
